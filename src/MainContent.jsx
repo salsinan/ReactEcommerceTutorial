@@ -4,11 +4,36 @@ export default class MainContent extends Component {
     state = { pageTitle: "Customers",
               customerCount: 5,
               customers: [
-                {id: 1, name: "Leon", phone:"051-313"},
-                {id: 2, name: "Leona", phone:"123-456"},
-                {id: 3, name: "Loene", phone:"789-101"},
-                {id: 4, name: "Loena", phone:"051-320"},
-                {id: 5, name: "Loops", phone:"051-332"}
+                {
+                    id: 1, 
+                    name: "Leon", 
+                    phone:"051-313", 
+                    address: {city: "Beaverton"}
+                },
+                {
+                    id: 2, 
+                    name: "Leona", 
+                    phone:"123-456", 
+                    address: {city: "Aloha"}
+                },
+                {
+                    id: 3, 
+                    name: "Loene", 
+                    phone:null, 
+                    address: {city: "Clackamas"}
+                },
+                {
+                    id: 4, 
+                    name: "Loena", 
+                    phone:"051-320", 
+                    address: {city: "Milwaukie"}
+                },
+                {
+                    id: 5, 
+                    name: "Loops", 
+                    phone:"051-332", 
+                    address: {city: "Tigard"}
+                }
               ]
     };
 
@@ -33,6 +58,7 @@ export default class MainContent extends Component {
                         <th>#</th>
                         <th>Customer Name</th>
                         <th>Phone</th>
+                        <th>City</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +68,13 @@ export default class MainContent extends Component {
                             <tr key={cust.id}>
                                 <td>{cust.id}</td>
                                 <td>{cust.name}</td>
-                                <td>{cust.phone}</td>
+                                <td>
+                                    {!cust.phone? (
+                                    <div className="bg-warning p-2 text-center">N/A</div>
+                                    ):(
+                                        cust.phone
+                                    )}</td>
+                                <td>{cust.address.city}</td>
                             </tr>
                         )
                     })
