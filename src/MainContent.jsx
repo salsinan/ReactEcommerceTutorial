@@ -59,11 +59,19 @@ export default class MainContent extends Component {
 
     getCustomerRow = () => {
         {
-            return (this.state.customers.map((cust) => {
+            return (this.state.customers.map((cust, index) => {
                 return (
                     <tr key={cust.id}>
                         <td>{cust.id}</td>
-                        <td><img src={cust.photo} alt="Customer"/></td>
+                        <td>
+                            <img src={cust.photo} alt="Customer"/>
+                            <div>
+                                <button className="btn btn-sm btn-secondary" onClick={() => {
+                                    this.onChangePhoto(cust, index);
+                                }}>Change Photo</button>
+                            </div>
+                        
+                        </td>
                         <td>{cust.name}</td>
                         <td>{this.getPhoneToRender(cust.phone)}</td>
                         <td>{cust.address.city}</td>
@@ -71,6 +79,12 @@ export default class MainContent extends Component {
                 )
             }))
         }
+    }
+
+    onChangePhoto = (cust, idx) => {
+        let custArr = this.state.customers;
+        custArr[idx].photo = "https://picsum.photos/id/1015/60"
+        this.setState({ customers: custArr });
     }
 
     render() {
